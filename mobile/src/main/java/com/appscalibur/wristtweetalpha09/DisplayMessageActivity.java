@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import com.twitter.sdk.android.core.models.Tweet;
 
 
 public class DisplayMessageActivity extends ActionBarActivity {
@@ -47,8 +49,32 @@ public class DisplayMessageActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //does shit when Send Tweet button is clicked
+    public void sendTweet(View view){
+        // Send the tweet in Text Message field to Twitter
+        EditText editText = (EditText) findViewById(R.id.edit_tweet);
+        String text = editText.getText().toString();
+
+    }
+
     public void loggingOut(View view){
         setContentView(R.layout.activity_main_activity_phone);
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

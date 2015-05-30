@@ -12,7 +12,8 @@
         android:textAllCaps="false"
         android:textSize="33sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,10 +23,33 @@
         android:textSize="22sp"
         android:textAllCaps="false"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
         android:background="@android:color/holo_red_light"
         android:textColor="@android:color/black"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="133dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_tweet"
+        android:hint="@string/edit_tweet"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_send"
+        android:id="@+id/button2"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        android:onClick="sendTweet"
+        android:layout_below="@+id/edit_tweet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
 
 </RelativeLayout>
