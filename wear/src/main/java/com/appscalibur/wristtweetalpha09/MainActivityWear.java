@@ -31,6 +31,7 @@ public class MainActivityWear extends Activity {
             List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
             // Do something with spokenText
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -49,8 +50,8 @@ public class MainActivityWear extends Activity {
         });
     }
 
-    //Switch to round voice activity
-    public void openRoundVoiceActivity(View view){
+    //Opens speech recognizer
+    public void openVoiceRecognizer(View view){
         displaySpeechRecognizer();
     }
 
