@@ -13,7 +13,9 @@
         app:cb_color="#55acee"
         app:cb_pressedRingWidth="8dip"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="openRoundVoiceActivity"
+        />
 
     <TextView
         android:layout_width="wrap_content"
