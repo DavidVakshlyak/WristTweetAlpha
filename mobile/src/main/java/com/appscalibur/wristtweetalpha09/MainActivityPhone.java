@@ -4,6 +4,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.CapabilityApi;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
@@ -16,6 +22,8 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.Set;
 
 
 public class MainActivityPhone extends ActionBarActivity {
@@ -87,4 +95,8 @@ public class MainActivityPhone extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

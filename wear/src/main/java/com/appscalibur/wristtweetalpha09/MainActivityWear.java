@@ -8,11 +8,70 @@ import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.CapabilityApi;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
+
 import java.util.List;
+import java.util.Set;
 
 public class MainActivityWear extends Activity {
 
     private TextView mTextView;
+
+    //Retrieve the nodes with the required capabilities
+    private static final String
+            VOICE_TRANSCRIPTION_CAPABILITY_NAME = "voice_transcription";
+
+    private GoogleApiClient mGoogleApiClient;
+
+    private void setupVoiceTranscription() {
+        CapabilityApi.GetCapabilityResult result = Wearable.CapabilityApi.getCapability(mGoogleApiClient,
+                VOICE_TRANSCRIPTION_CAPABILITY_NAME, CapabilityApi.FILTER_REACHABLE).await();
+
+        updateTranscriptionCapability(result.getCapability());
+
+        //register the listener and retrieve the results of reachable nodes with the voice_transcription capability:
+        CapabilityApi.CapabilityListener capabilityListener =
+                new CapabilityApi.CapabilityListener() {
+
+                    @Override
+                    public void onCapabilityChanged(CapabilityInfo capabilityInfo){
+                        updateTranscriptionCapability(capabilityInfo);
+                    }
+                };
+
+        Wearable.CapabilityApi.addCapabilityListener(mGoogleApiClient, capabilityListener,
+                VOICE_TRANSCRIPTION_CAPABILITY_NAME);
+    }
+
+    //After detecting the capable nodes, determine where to send the message.
+    private String transcriptionId = null;
+
+    private void updateTranscriptionCapability(CapabilityInfo capabilityInfo){
+        Set<Node> connectedNodes = capabilityInfo.getNodes();
+
+        transcriptionId = pickBestNodeId(connectedNodes);
+    }
+
+    private String pickBestNodeId(Set<Node> nodes){
+        String bestNodeId = null;
+        //Find a nearby node or pick one arbitrarily
+        for (Node node : nodes){
+            if(node.isNearby()) {
+                return node.getId();
+            }
+            bestNodeId = node.getId();
+        }
+        return bestNodeId;
+    }
+
+    //Deliver the message
+
+
+
 
     //VOICE RECOGNITION STUFF
     private static final int SPEECH_REQUEST_CODE = 0;
@@ -31,6 +90,8 @@ public class MainActivityWear extends Activity {
             List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
             // Do something with spokenText
+            //Deliver the message
+
 
         }
         super.onActivityResult(requestCode, resultCode, data);
