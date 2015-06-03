@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.CapabilityApi;
 import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 
@@ -69,6 +71,26 @@ public class MainActivityWear extends Activity {
     }
 
     //Deliver the message
+    public static final String VOICE_TRANSCRIPTION_MESSAGE_PATH = "/voice_transcription";
+
+    private void requestTranscription (byte[] voiceData) {
+        if (transcriptionId != null){
+            Wearable.MessageApi.sendMessage(mGoogleApiClient, transcriptionId, VOICE_TRANSCRIPTION_MESSAGE_PATH,
+                    voiceData).setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
+                @Override
+                public void onResult(MessageApi.SendMessageResult sendMessageResult) {
+                    if (!sendMessageResult.getStatus().isSuccess()){
+                        //FAILED TO SEND MESSAGE
+                        System.out.println("FAILED TO SEND MESSAGE");
+                    }
+                }
+            });
+        } else {
+            //Unable to retrieve node with transcription capability
+            System.out.println("Unable to retrieve node with transcription capability");
+        }
+
+    }
 
 
 
