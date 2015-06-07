@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.CapabilityApi;
 import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import com.twitter.sdk.android.Twitter;
@@ -32,7 +33,7 @@ public class MainActivityPhone extends ActionBarActivity {
     private static final String TWITTER_KEY = "gqtizkbw2jubyo83dwvRNNZlv";
     private static final String TWITTER_SECRET = "F4E8oi4iqZ7UfzLjwDLi3FjtMKcRfbBTjwnlf0tjduggdpYc0O";
     private TwitterLoginButton loginButton;
-    public final static String EXTRA_MESSAGE = "com.appscalibur.wristtweetalpha09.MESSAGE";
+
 
 
     @Override
@@ -95,7 +96,6 @@ public class MainActivityPhone extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 
